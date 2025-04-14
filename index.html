@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>OS Security Vulnerabilities Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="animate__animated animate__fadeIn">
+            <h1>OS Security Vulnerabilities Simulator</h1>
+            <p>Interactive demonstrations of common operating system security vulnerabilities</p>
+            <div class="theme-toggle">
+                <button id="theme-switch">🌓 Toggle Theme</button>
+            </div>
+        </header>
+
+        <nav class="demo-nav">
+            <button class="nav-btn active" data-section="buffer-overflow">Buffer Overflow</button>
+            <button class="nav-btn" data-section="trapdoor">Trapdoor</button>
+            <button class="nav-btn" data-section="cache-poisoning">Cache Poisoning</button>
+        </nav>
+
+        <main>
+            <!-- Buffer Overflow Section -->
+            <section class="vulnerability-section active" id="buffer-overflow">
+                <h2>1. Buffer Overflow <span class="difficulty">Difficulty: Easy</span></h2>
+                <div class="simulation-container">
+                    <div class="info-box">
+                        <div class="info-content">
+                            <h3>What is Buffer Overflow?</h3>
+                            <p>Buffer overflow occurs when a program writes more data to a buffer than it can hold, causing memory corruption.</p>
+                            <div class="learn-more">
+                                <details>
+                                    <summary>Learn More</summary>
+                                    <ul>
+                                        <li>Can overwrite adjacent memory</li>
+                                        <li>May crash the program</li>
+                                        <li>Can be exploited to run malicious code</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                        <div class="tooltip" data-tooltip="Try entering more characters than the specified buffer size to see what happens!">ℹ️</div>
+                    </div>
+                    <div class="simulation">
+                        <div class="control-panel">
+                            <label for="buffer-size">Buffer Size:</label>
+                            <input type="range" id="buffer-size" min="4" max="12" value="8">
+                            <span id="buffer-size-display">8</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="buffer-input">Enter text:</label>
+                            <input type="text" id="buffer-input" maxlength="20">
+                            <div class="char-counter">0/8 characters</div>
+                        </div>
+                        <div class="memory-visualization">
+                            <div class="memory-header">Memory Layout</div>
+                            <div class="buffer-container">
+                                <div class="buffer-cells"></div>
+                                <div class="overflow-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="simulation-stats">
+                            <div>Overflow Attempts: <span id="overflow-count">0</span></div>
+                            <div>Memory Corruptions: <span id="corruption-count">0</span></div>
+                        </div>
+                        <div class="simulation-log" id="buffer-log"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trapdoor Section -->
+            <section class="vulnerability-section" id="trapdoor">
+                <h2>2. Trapdoor Attack <span class="difficulty">Difficulty: Medium</span></h2>
+                <div class="simulation-container">
+                    <div class="info-box">
+                        <div class="info-content">
+                            <h3>What is a Trapdoor?</h3>
+                            <p>A trapdoor is a secret entry point that bypasses normal security mechanisms.</p>
+                            <div class="learn-more">
+                                <details>
+                                    <summary>Learn More</summary>
+                                    <ul>
+                                        <li>Hidden authentication bypass</li>
+                                        <li>Often planted by malicious developers</li>
+                                        <li>Can provide unauthorized access</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                        <div class="tooltip" data-tooltip="Try logging in with incorrect credentials, then try the hidden backdoor!">ℹ️</div>
+                    </div>
+                    <div class="simulation">
+                        <div class="login-interface">
+                            <div class="server-status">
+                                <span class="status-dot"></span>
+                                Server Status: <span id="server-status">Online</span>
+                            </div>
+                            <form id="login-form">
+                                <div class="input-group">
+                                    <label for="username">Username:</label>
+                                    <input type="text" id="username" placeholder="Enter username">
+                                </div>
+                                <div class="input-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" id="password" placeholder="Enter password">
+                                    <button type="button" class="toggle-password">👁️</button>
+                                </div>
+                                <div class="login-hints">
+                                    <p>Hint: Try 'user' / 'password' for normal login</p>
+                                    <p class="secret-hint">🔍 There might be a hidden backdoor...</p>
+                                </div>
+                                <button type="submit" class="login-btn">Login</button>
+                            </form>
+                            <div class="access-log">
+                                <h4>Access Log</h4>
+                                <div class="simulation-log" id="trapdoor-log"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cache Poisoning Section -->
+            <section class="vulnerability-section" id="cache-poisoning">
+                <h2>3. Cache Poisoning <span class="difficulty">Difficulty: Hard</span></h2>
+                <div class="simulation-container">
+                    <div class="info-box">
+                        <div class="info-content">
+                            <h3>What is Cache Poisoning?</h3>
+                            <p>Cache poisoning occurs when malicious data is inserted into a cache, causing systems to serve incorrect information.</p>
+                            <div class="learn-more">
+                                <details>
+                                    <summary>Learn More</summary>
+                                    <ul>
+                                        <li>Affects system performance and reliability</li>
+                                        <li>Can redirect users to malicious sites</li>
+                                        <li>Hard to detect and clean</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                        <div class="tooltip" data-tooltip="Watch how corrupted cache data can mislead applications!">ℹ️</div>
+                    </div>
+                    <div class="simulation">
+                        <div class="cache-stats">
+                            <div>Cache Size: <span id="cache-size">0</span></div>
+                            <div>Poisoned Entries: <span id="poison-count">0</span></div>
+                        </div>
+                        <div class="cache-controls">
+                            <button id="request-data" class="action-btn">📥 Request Data</button>
+                            <button id="poison-cache" class="action-btn danger">☠️ Poison Cache</button>
+                            <button id="clear-cache" class="action-btn warning">🧹 Clear Cache</button>
+                        </div>
+                        <div class="cache-visualization">
+                            <h4>Cache Contents</h4>
+                            <div class="cache-container"></div>
+                        </div>
+                        <div class="simulation-log" id="cache-log"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Created for educational purposes only. Do not use these demonstrations for malicious purposes.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">📚 Documentation</a>
+                <a href="#" class="social-link">💡 Report Issue</a>
+                <a href="#" class="social-link">🌟 Star Project</a>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
