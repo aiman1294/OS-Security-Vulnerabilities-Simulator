@@ -546,3 +546,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 })(); 
+// Smooth scroll to top when the "back-to-top" link is clicked
+document.querySelector('.social-links a[href="#"]').addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent the default jump behavior
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
