@@ -11,9 +11,9 @@
 }
 
 .dark-theme {
-    --primary-color: #6366f1;
+    --primary-color: #125d39; 
     --background-light: #1a1a1a;
-    --text-light: #e0e7ff;
+    --text-light: #333 ;
 }
 
 * {
