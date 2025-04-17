@@ -352,14 +352,14 @@ footer {
     color: #64748b;
 }
 
-.social-links {
+.back-to-top {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
 }
 
-.social-link {
+.back-to-top {
     color: var(--primary-color);
     text-decoration: none;
     padding: 0.5rem 1rem;
@@ -367,7 +367,7 @@ footer {
     transition: all 0.3s;
 }
 
-.social-link:hover {
+.back-to-top:hover {
     background: var(--primary-color);
     color: white;
 }
